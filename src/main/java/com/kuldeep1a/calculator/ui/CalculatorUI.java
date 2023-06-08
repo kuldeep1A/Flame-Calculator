@@ -285,6 +285,18 @@ public class CalculatorUI {
         btnAdd = createButton("+", columns[3], rows[4]);
 
         btnPoint = createButton(".", columns[0], rows[5]);
+        btnPoint.addActionListener(event -> {
+            if (addToDisplay){
+                if (!inputScreen.getText().contains(".")){
+                    inputScreen.setText(inputScreen.getText() + ".");
+                }
+            } else {
+                inputScreen.setText("0.");
+                addToDisplay = true;
+            }
+            go = true;
+        });
+
         btn0 = createButton("0", columns[1], rows[5]);
         btn0.addActionListener(event -> {
             if (addToDisplay) {
