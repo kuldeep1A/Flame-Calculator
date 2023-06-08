@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Calculator" />
+        <module name="Flame-Calculator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Flame-Calculator" target="1.5" />
+      <module name="Calculator" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

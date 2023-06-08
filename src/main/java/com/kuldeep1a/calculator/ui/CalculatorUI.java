@@ -117,6 +117,8 @@ public class CalculatorUI {
         });
     }
 
+
+    // Double.parseDouble() It returns e double value represented by the string argument.
     public void initButtons(int[] columns, int[] rows){
         btnC = createButton("C", columns[0], rows[1]);
         btnC.addActionListener(event -> {
@@ -283,6 +285,24 @@ public class CalculatorUI {
         });
 
         btnAdd = createButton("+", columns[3], rows[4]);
+        btnAdd.addActionListener(event -> {
+            if (!Pattern.matches(DOUBLE_OR_NUMBER_REGEX, inputScreen.getText()))
+                return;
+
+            if (go){
+                typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
+                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))){
+                    inputScreen.setText(String.valueOf((int) typedValue));
+                } else {
+                    inputScreen.setText(String.valueOf(typedValue));
+                }
+                selectedOperator = '+';
+                addToDisplay = false;
+                go = false;
+            } else {
+                selectedOperator = '+';
+            }
+        });
 
         btnPoint = createButton(".", columns[0], rows[5]);
         btnPoint.addActionListener(event -> {
