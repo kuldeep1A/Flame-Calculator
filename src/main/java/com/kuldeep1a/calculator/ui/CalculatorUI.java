@@ -286,6 +286,20 @@ public class CalculatorUI {
 
         btnPoint = createButton(".", columns[0], rows[5]);
         btn0 = createButton("0", columns[1], rows[5]);
+        btn0.addActionListener(event -> {
+            if (addToDisplay) {
+                if (Pattern.matches("[0]*", inputScreen.getText())){
+                    inputScreen.setText("0");
+                } else {
+                    inputScreen.setText(inputScreen.getText() + "0");
+                }
+            } else {
+                inputScreen.setText("0");
+                addToDisplay = true;
+            }
+            go = true;
+        });
+
         btnEqual = createButton("=", columns[2], rows[5]);
         btnEqual.setSize(2* BUTTON_WIDTH + 10, BUTTON_HEIGHT);
 
