@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class CalculatorUI {
     private static final String DOUBLE_OR_NUMBER_REGEX = "([-]?\\d+[.]\\d*)|(\\d+)|(-\\d+)";
@@ -45,6 +46,9 @@ public class CalculatorUI {
     private JButton btnPower;
     private JButton btnLog;
     private char selectedOperator = ' ';
+    private double typedValue = 0;
+    private boolean go = true;
+    private boolean addToDisplay = true;
     private final Map<String, Theme> themeMap;
 
     public CalculatorUI() {
@@ -53,6 +57,7 @@ public class CalculatorUI {
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         window.setLocationRelativeTo(null);
 
+        // more helping
         int[] columns = {MARGIN_X, MARGIN_X + 90, MARGIN_X + 90 * 2, MARGIN_X + 90 * 3, MARGIN_X + 90 * 4};
         int[] rows = {MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 100 + 80, MARGIN_Y + 100 + 80 * 2, MARGIN_Y + 100 + 80 * 3, MARGIN_Y + 100 + 80 * 4};
 
@@ -74,6 +79,23 @@ public class CalculatorUI {
         inputScreen.setBackground(Color.WHITE);
         inputScreen.setFont(new Font(FONT_NAME, Font.PLAIN, 33));
         window.add(inputScreen);
+    }
+
+    public double calculate(double firstNumber, double secondNumber, char operator){
+        switch(operator){
+            case '+':
+                return firstNumber + secondNumber;
+            case '-':
+                return firstNumber - secondNumber;
+            case '/':
+                return firstNumber / secondNumber;
+            case '%':
+                return firstNumber % secondNumber;
+            case '^':
+                return Math.pow(firstNumber, secondNumber);
+            default:
+                return secondNumber;
+        }
     }
 
     public void initCalculatorTypeSelector(){
@@ -114,6 +136,32 @@ public class CalculatorUI {
                 inputScreen.setText(str2.toString());
             }
         });
+
+        btnMod = createButton("%", columns[2], rows[1]);
+        btnDiv = createButton("/", columns[3], rows[1]);
+
+
+        btn7 = createButton("7", columns[0], rows[2]);
+        btn8 = createButton("8", columns[1], rows[2]);
+        btn9 = createButton("9", columns[2], rows[2]);
+        btnMul = createButton("*", columns[3], rows[2]);
+
+        btn4 = createButton("4", columns[0], rows[3]);
+        btn5 = createButton("5", columns[1], rows[3]);
+        btn6 = createButton("6", columns[2], rows[3]);
+        btnSub = createButton("-", columns[3], rows[3]);
+
+        btn1 = createButton("1", columns[0], rows[4]);
+        btn2 = createButton("2", columns[1], rows[4]);
+        btn3 = createButton("3", columns[2], rows[4]);
+        btnAdd = createButton("+", columns[3], rows[4]);
+
+        btnPoint = createButton(".", columns[0], rows[5]);
+        btn0 = createButton("0", columns[1], rows[5]);
+
+        btnEqual = createButton("=", columns[2], rows[5]);
+        btnEqual.setSize(2* BUTTON_WIDTH + 10, BUTTON_HEIGHT);
+
     }
 
     private JComboBox<String> createComboBox(String[] items, int x, int y, String toolTip){
