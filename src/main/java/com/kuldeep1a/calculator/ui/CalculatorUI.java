@@ -191,6 +191,20 @@ public class CalculatorUI {
         btnMul = createButton("*", columns[3], rows[2]);
 
         btn4 = createButton("4", columns[0], rows[3]);
+        btn4.addActionListener(event -> {
+            if (addToDisplay){
+                if (Pattern.matches("[0]*", inputScreen.getText())){
+                    inputScreen.setText("4");
+                } else {
+                    inputScreen.setText(inputScreen.getText() + "4");
+                }
+            } else {
+                inputScreen.setText("4");
+                addToDisplay = true;
+            }
+            go = true;
+        });
+
         btn5 = createButton("5", columns[1], rows[3]);
         btn6 = createButton("6", columns[2], rows[3]);
         btnSub = createButton("-", columns[3], rows[3]);
