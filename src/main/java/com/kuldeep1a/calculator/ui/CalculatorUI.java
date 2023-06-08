@@ -4,6 +4,8 @@ import com.kuldeep1a.calculator.theme.ThemeLoader;
 import com.kuldeep1a.calculator.theme.properties.Theme;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ItemEvent;
 import java.util.Map;
 
 public class CalculatorUI {
@@ -17,6 +19,9 @@ public class CalculatorUI {
     private static final int MARGIN_Y = 60;
     private final JFrame window;
     private static final String FONT_NAME = "Comic Sans MS";
+    private JTextField inputScreen;
+    private JComboBox<String> comboCalculatorType;
+    private JComboBox<String> comboTheme;
     private JButton btnC;
     private JButton btnBack;
     private JButton btnMod;
@@ -47,6 +52,12 @@ public class CalculatorUI {
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         window.setLocationRelativeTo(null);
 
+        int[] columns = {MARGIN_X, MARGIN_X + 90, MARGIN_X + 90 * 2, MARGIN_X + 90 * 3, MARGIN_X + 90 * 4};
+        int[] rows = {MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 100 + 80, MARGIN_Y + 100 + 80 * 2, MARGIN_Y + 100 + 80 * 3, MARGIN_Y + 100 + 80 * 4};
+
+        initInputScreen(columns, rows);
+        initCalculatorTypeSelector();
+
         window.setLayout(null);
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,4 +65,43 @@ public class CalculatorUI {
     }
 
 
+    public void initInputScreen(int[] columns, int[] rows){
+        inputScreen = new JTextField("0");
+        inputScreen.setBounds(columns[0], rows[0], 350, 70);
+        inputScreen.setEditable(false);
+        inputScreen.setBackground(Color.WHITE);
+        inputScreen.setFont(new Font(FONT_NAME, Font.PLAIN, 33));
+        window.add(inputScreen);
+    }
+
+    public void initCalculatorTypeSelector(){
+        comboCalculatorType = createComboBox(new String[]{"Standard", "Scientific"}, 20, 30, "Calculator type");
+        comboCalculatorType.addItemListener(event ->{
+            if (event.getStateChange() != ItemEvent.SELECTED){
+                return;
+            }
+            String selectedItem = (String) event.getItem();
+            switch (selectedItem){
+                case "Standard":
+                    window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+                    break;
+                case "Scientific":
+                    window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
+
+                    break;
+
+
+            }
+        });
+    }
+
+    private JComboBox<String> createComboBox(String[] items, int x, int y, String toolTip){
+        JComboBox<String> combo = new JComboBox<>(items);
+        combo.setBounds(x, y, 140, 25);
+        combo.setToolTipText(toolTip);
+        combo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        window.add(combo);
+
+        return combo;
+    }
 }
