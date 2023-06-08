@@ -102,7 +102,7 @@ public class CalculatorUI {
         });
 
         btnBack = createButton("<-", columns[1], rows[1]);
-        btnBack.addItemListener(event ->{
+        btnBack.addActionListener(event ->{
             String str = inputScreen.getText();
             StringBuilder str2 = new StringBuilder();
             for(int i = 0; i < (str.length() - 1); i++){
