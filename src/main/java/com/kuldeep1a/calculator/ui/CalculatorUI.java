@@ -157,6 +157,19 @@ public class CalculatorUI {
         });
 
         btn8 = createButton("8", columns[1], rows[2]);
+        btn8.addActionListener(event ->{
+            if (addToDisplay){
+                if (Pattern.matches("[0]*", inputScreen.getText())){
+                    inputScreen.setText("8");
+                } else {
+                    inputScreen.setText(inputScreen.getText() + "8");
+                }
+            } else {
+                inputScreen.setText("8");
+                addToDisplay = true;
+            }
+            go = true;
+        });
         btn9 = createButton("9", columns[2], rows[2]);
         btnMul = createButton("*", columns[3], rows[2]);
 
