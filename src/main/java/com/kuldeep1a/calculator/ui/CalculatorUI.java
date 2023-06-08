@@ -238,13 +238,28 @@ public class CalculatorUI {
         btnSub = createButton("-", columns[3], rows[3]);
 
         btn1 = createButton("1", columns[0], rows[4]);
+        btn1.addActionListener(event -> {
+            if (addToDisplay) {
+                if (Pattern.matches("[0]*", inputScreen.getText())){
+                    inputScreen.setText("1");
+                } else {
+                    inputScreen.setText(inputScreen.getText() + "1");
+                }
+            } else {
+                inputScreen.setText("1");
+                addToDisplay = true;
+            }
+            go = true;
+        });
+
         btn2 = createButton("2", columns[1], rows[4]);
+
         btn3 = createButton("3", columns[2], rows[4]);
+
         btnAdd = createButton("+", columns[3], rows[4]);
 
         btnPoint = createButton(".", columns[0], rows[5]);
         btn0 = createButton("0", columns[1], rows[5]);
-
         btnEqual = createButton("=", columns[2], rows[5]);
         btnEqual.setSize(2* BUTTON_WIDTH + 10, BUTTON_HEIGHT);
 
