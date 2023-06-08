@@ -333,6 +333,18 @@ public class CalculatorUI {
         });
 
         btnEqual = createButton("=", columns[2], rows[5]);
+        btnEqual.addActionListener(event -> {
+            if (!Pattern.matches(DOUBLE_OR_NUMBER_REGEX, inputScreen.getText()))
+                return;
+            if (go) {
+                typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
+                if (Pattern.matches("[-]?[\\d]+[.][0]*", inputScreen.getText())){
+                    inputScreen.setText(String.valueOf((int) typedValue));
+                } else {
+                    inputScreen.setText(String.valueOf(typedValue));
+                }
+            }
+        });
         btnEqual.setSize(2* BUTTON_WIDTH + 10, BUTTON_HEIGHT);
 
     }
