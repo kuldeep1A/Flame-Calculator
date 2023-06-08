@@ -44,6 +44,7 @@ public class CalculatorUI {
     private JButton btnRoot;
     private JButton btnPower;
     private JButton btnLog;
+    private char selectedOperator = ' ';
     private final Map<String, Theme> themeMap;
 
     public CalculatorUI() {
@@ -56,6 +57,7 @@ public class CalculatorUI {
         int[] rows = {MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 100 + 80, MARGIN_Y + 100 + 80 * 2, MARGIN_Y + 100 + 80 * 3, MARGIN_Y + 100 + 80 * 4};
 
         initInputScreen(columns, rows);
+        initButtons(columns, rows);
         initCalculatorTypeSelector();
 
         window.setLayout(null);
@@ -66,7 +68,7 @@ public class CalculatorUI {
 
 
     public void initInputScreen(int[] columns, int[] rows){
-        inputScreen = new JTextField("0");
+        inputScreen = new JTextField("143");
         inputScreen.setBounds(columns[0], rows[0], 350, 70);
         inputScreen.setEditable(false);
         inputScreen.setBackground(Color.WHITE);
@@ -89,10 +91,16 @@ public class CalculatorUI {
                     window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
 
                     break;
-
-
             }
         });
+    }
+
+    public void initButtons(int[] columns, int[] rows){
+        btnC = createButton("C", columns[0], rows[1]);
+        btnC.addItemListener(event -> {
+            inputScreen.setText("0");
+        });
+
     }
 
     private JComboBox<String> createComboBox(String[] items, int x, int y, String toolTip){
@@ -103,5 +111,16 @@ public class CalculatorUI {
         window.add(combo);
 
         return combo;
+    }
+
+    private JButton createButton(String label, int x, int y){
+        JButton btn = new JButton(label);
+        btn.setBounds(x, y, BUTTON_WIDTH, BUTTON_HEIGHT);
+        btn.setFont(new Font(FONT_NAME, Font.PLAIN, 28));
+        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.setFocusable(false);
+        window.add(btn);
+
+        return btn;
     }
 }
