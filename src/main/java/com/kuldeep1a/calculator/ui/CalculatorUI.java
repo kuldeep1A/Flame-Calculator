@@ -101,6 +101,19 @@ public class CalculatorUI {
             inputScreen.setText("0");
         });
 
+        btnBack = createButton("<-", columns[1], rows[1]);
+        btnBack.addItemListener(event ->{
+            String str = inputScreen.getText();
+            StringBuilder str2 = new StringBuilder();
+            for(int i = 0; i < (str.length() - 1); i++){
+                str2.append(str.charAt(i));
+            }
+            if (str2.toString().equals("")){
+                inputScreen.setText("0");
+            } else{
+                inputScreen.setText(str2.toString());
+            }
+        });
     }
 
     private JComboBox<String> createComboBox(String[] items, int x, int y, String toolTip){
