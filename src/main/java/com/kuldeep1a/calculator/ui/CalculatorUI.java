@@ -73,7 +73,7 @@ public class CalculatorUI {
 
 
     public void initInputScreen(int[] columns, int[] rows){
-        inputScreen = new JTextField("143");
+        inputScreen = new JTextField("0");
         inputScreen.setBounds(columns[0], rows[0], 350, 70);
         inputScreen.setEditable(false);
         inputScreen.setBackground(Color.WHITE);
@@ -119,8 +119,10 @@ public class CalculatorUI {
 
     public void initButtons(int[] columns, int[] rows){
         btnC = createButton("C", columns[0], rows[1]);
-        btnC.addItemListener(event -> {
+        btnC.addActionListener(event -> {
             inputScreen.setText("0");
+            selectedOperator = ' ';
+            typedValue = 0;
         });
 
         btnBack = createButton("<-", columns[1], rows[1]);
@@ -170,7 +172,22 @@ public class CalculatorUI {
             }
             go = true;
         });
+
         btn9 = createButton("9", columns[2], rows[2]);
+        btn9.addActionListener(event -> {
+            if (addToDisplay){
+                if (Pattern.matches("[0]*", inputScreen.getText())){
+                    inputScreen.setText("9");
+                } else {
+                    inputScreen.setText(inputScreen.getText() + "9");
+                }
+            } else {
+                inputScreen.setText("9");
+                addToDisplay = true;
+            }
+            go = true;
+        });
+
         btnMul = createButton("*", columns[3], rows[2]);
 
         btn4 = createButton("4", columns[0], rows[3]);
