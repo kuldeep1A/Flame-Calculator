@@ -221,6 +221,20 @@ public class CalculatorUI {
         });
 
         btn6 = createButton("6", columns[2], rows[3]);
+        btn6.addActionListener(event -> {
+            if (addToDisplay) {
+                if (Pattern.matches("[0]*", inputScreen.getText())){
+                    inputScreen.setText("6");
+                } else {
+                    inputScreen.setText(inputScreen.getText() + "6");
+                }
+            } else {
+                inputScreen.setText("6");
+                addToDisplay = true;
+            }
+            go = true;
+        });
+
         btnSub = createButton("-", columns[3], rows[3]);
 
         btn1 = createButton("1", columns[0], rows[4]);
