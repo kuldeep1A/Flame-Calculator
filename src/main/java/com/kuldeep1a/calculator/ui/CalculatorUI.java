@@ -343,6 +343,8 @@ public class CalculatorUI {
                 } else {
                     inputScreen.setText(String.valueOf(typedValue));
                 }
+                selectedOperator = '=';
+                addToDisplay = false;
             }
         });
         btnEqual.setSize(2* BUTTON_WIDTH + 10, BUTTON_HEIGHT);
