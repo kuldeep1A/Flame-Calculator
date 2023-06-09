@@ -144,6 +144,21 @@ public class CalculatorUI {
         });
 
         btnMod = createButton("%", columns[2], rows[1]);
+        btnMod.addActionListener(event -> {
+            if (!Pattern.matches(DOUBLE_OR_NUMBER_REGEX, inputScreen.getText()))
+                return;
+
+            typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
+            if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))){
+                inputScreen.setText(String.valueOf((int) typedValue));
+            } else {
+                inputScreen.setText(String.valueOf(typedValue));
+            }
+            selectedOperator = '%';
+            go = false;
+            addToDisplay = false;
+        });
+
         btnDiv = createButton("/", columns[3], rows[1]);
         btnDiv.addActionListener(event -> {
             if (!Pattern.matches(DOUBLE_OR_NUMBER_REGEX, inputScreen.getText()))
