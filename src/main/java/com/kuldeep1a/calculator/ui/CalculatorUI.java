@@ -467,6 +467,21 @@ public class CalculatorUI {
         btnPower.setVisible(false);
 
         btnLog = createButton("ln", columns[4], rows[3]);
+        btnLog.addActionListener(event -> {
+            if (!Pattern.matches(DOUBLE_OR_NUMBER_REGEX, inputScreen.getText()))
+                return;
+
+            if (go) {
+                typedValue = Math.log(Double.parseDouble(inputScreen.getText()));
+                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
+                    inputScreen.setText(String.valueOf((int) typedValue));
+                } else {
+                    inputScreen.setText(String.valueOf(typedValue));
+                }
+                selectedOperator = 'l';
+                addToDisplay = false;
+            }
+        });
         btnLog.setVisible(false);
 
     }
