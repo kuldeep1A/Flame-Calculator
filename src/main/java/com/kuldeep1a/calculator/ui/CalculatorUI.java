@@ -1,13 +1,11 @@
 package com.kuldeep1a.calculator.ui;
 
-
 import com.kuldeep1a.calculator.theme.ThemeLoader;
 import com.kuldeep1a.calculator.theme.properties.Theme;
 
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.regex.Pattern;
 import java.awt.Color;
@@ -16,13 +14,14 @@ import javax.swing.*;
 import static com.kuldeep1a.calculator.util.ColorUtil.hexTwoColor;
 public class CalculatorUI {
     private static final String DOUBLE_OR_NUMBER_REGEX = "([-]?\\d+[.]\\d*)|(\\d+)|(-\\d+)";
-    private static final String APPLICATION_TITLE = "Calculator";
+    private static final String APPLICATION_TITLE = "Flame-Calculator";
     private static final int WINDOW_WIDTH = 410;
     private static final int WINDOW_HEIGHT = 600;
     private static final int BUTTON_WIDTH = 80;
     private static final int BUTTON_HEIGHT = 70;
     private static final int MARGIN_X = 20;
     private static final int MARGIN_Y = 60;
+
     private final JFrame window;
     private static final String FONT_NAME = "Comic Sans MS";
     private JTextField inputScreen;
@@ -50,15 +49,16 @@ public class CalculatorUI {
     private JButton btnRoot;
     private JButton btnPower;
     private JButton btnLog;
+
     private char selectedOperator = ' ';
+    private boolean go = true; // For calculate with Opt != (=)
+    private boolean addToDisplay = true; // Connect numbers in display
     private double typedValue = 0;
-    private boolean go = true;
-    private boolean addToDisplay = true;
     private final Map<String, Theme> themeMap;
 
     public CalculatorUI() {
         themeMap = ThemeLoader.loadThemes();
-        window = new JFrame();
+        window = new JFrame(APPLICATION_TITLE);
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         window.setLocationRelativeTo(null);
 
