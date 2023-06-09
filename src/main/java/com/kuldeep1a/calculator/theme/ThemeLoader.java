@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class ThemeLoader {
     public ThemeLoader(){
-        throw new AssertionError("Constructor is not allowed");
+        throw new AssertionError("Constructor nahi chalega!");
     }
 
     public static Map<String, Theme> loadThemes(){

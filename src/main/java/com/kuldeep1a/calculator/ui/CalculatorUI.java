@@ -1,14 +1,18 @@
 package com.kuldeep1a.calculator.ui;
 
+
 import com.kuldeep1a.calculator.theme.ThemeLoader;
 import com.kuldeep1a.calculator.theme.properties.Theme;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.util.Map;
 import java.util.regex.Pattern;
+import java.awt.Color;
+import javax.swing.*;
 
+import static com.kuldeep1a.calculator.util.ColorUtil.hexTwoColor;
 public class CalculatorUI {
     private static final String DOUBLE_OR_NUMBER_REGEX = "([-]?\\d+[.]\\d*)|(\\d+)|(-\\d+)";
     private static final String APPLICATION_TITLE = "Calculator";
@@ -505,5 +509,61 @@ public class CalculatorUI {
         window.add(btn);
 
         return btn;
+    }
+
+    private void applyTheme(Theme theme){
+        window.getContentPane().setBackground(hexTwoColor(theme.getApplicationBackground()));
+
+        comboCalculatorType.setForeground(hexTwoColor(theme.getTextColor()));
+        comboTheme.setForeground(hexTwoColor(theme.getTextColor()));
+        inputScreen.setForeground(hexTwoColor(theme.getTextColor()));
+        btn0.setForeground(hexTwoColor(theme.getTextColor()));
+        btn1.setForeground(hexTwoColor(theme.getTextColor()));
+        btn2.setForeground(hexTwoColor(theme.getTextColor()));
+        btn3.setForeground(hexTwoColor(theme.getTextColor()));
+        btn4.setForeground(hexTwoColor(theme.getTextColor()));
+        btn5.setForeground(hexTwoColor(theme.getTextColor()));
+        btn6.setForeground(hexTwoColor(theme.getTextColor()));
+        btn7.setForeground(hexTwoColor(theme.getTextColor()));
+        btn8.setForeground(hexTwoColor(theme.getTextColor()));
+        btn9.setForeground(hexTwoColor(theme.getTextColor()));
+        btnPoint.setForeground(hexTwoColor(theme.getTextColor()));
+        btnC.setForeground(hexTwoColor(theme.getTextColor()));
+        btnBack.setForeground(hexTwoColor(theme.getTextColor()));
+        btnMod.setForeground(hexTwoColor(theme.getTextColor()));
+        btnDiv.setForeground(hexTwoColor(theme.getTextColor()));
+        btnMul.setForeground(hexTwoColor(theme.getTextColor()));
+        btnSub.setForeground(hexTwoColor(theme.getTextColor()));
+        btnAdd.setForeground(hexTwoColor(theme.getTextColor()));
+        btnRoot.setForeground(hexTwoColor(theme.getTextColor()));
+        btnLog.setForeground(hexTwoColor(theme.getTextColor()));
+        btnPower.setForeground(hexTwoColor(theme.getTextColor()));
+        btnEqual.setForeground(hexTwoColor(theme.getBtnEqualTextColor()));
+
+        comboCalculatorType.setBackground(hexTwoColor(theme.getApplicationBackground()));
+        comboTheme.setBackground(hexTwoColor(theme.getApplicationBackground()));
+        inputScreen.setBackground(hexTwoColor(theme.getApplicationBackground()));
+        btn0.setBackground(hexTwoColor(theme.getNumbersBackground()));
+        btn1.setBackground(hexTwoColor(theme.getNumbersBackground()));
+        btn2.setBackground(hexTwoColor(theme.getNumbersBackground()));
+        btn3.setBackground(hexTwoColor(theme.getNumbersBackground()));
+        btn4.setBackground(hexTwoColor(theme.getNumbersBackground()));
+        btn5.setBackground(hexTwoColor(theme.getNumbersBackground()));
+        btn6.setBackground(hexTwoColor(theme.getNumbersBackground()));
+        btn7.setBackground(hexTwoColor(theme.getNumbersBackground()));
+        btn8.setBackground(hexTwoColor(theme.getNumbersBackground()));
+        btn9.setBackground(hexTwoColor(theme.getNumbersBackground()));
+        btnPoint.setBackground(hexTwoColor(theme.getNumbersBackground()));
+        btnC.setBackground(hexTwoColor(theme.getOperatorBackground()));
+        btnBack.setBackground(hexTwoColor(theme.getOperatorBackground()));
+        btnMod.setBackground(hexTwoColor(theme.getOperatorBackground()));
+        btnDiv.setBackground(hexTwoColor(theme.getOperatorBackground()));
+        btnMul.setBackground(hexTwoColor(theme.getOperatorBackground()));
+        btnSub.setBackground(hexTwoColor(theme.getOperatorBackground()));
+        btnAdd.setBackground(hexTwoColor(theme.getOperatorBackground()));
+        btnRoot.setBackground(hexTwoColor(theme.getOperatorBackground()));
+        btnLog.setBackground(hexTwoColor(theme.getOperatorBackground()));
+        btnPower.setBackground(hexTwoColor(theme.getOperatorBackground()));
+        btnEqual.setBackground(hexTwoColor(theme.getBtnEqualBackground()));
     }
 }
