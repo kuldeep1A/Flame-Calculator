@@ -91,6 +91,8 @@ public class CalculatorUI {
                 return firstNumber / secondNumber;
             case '%':
                 return firstNumber % secondNumber;
+            case '*':
+                return firstNumber * secondNumber;
             case '^':
                 return Math.pow(firstNumber, secondNumber);
             default:
@@ -203,8 +205,8 @@ public class CalculatorUI {
                     inputScreen.setText(String.valueOf(typedValue));
                 }
                 selectedOperator = '*';
-                addToDisplay = false;
                 go = false;
+                addToDisplay = false;
             } else {
                 selectedOperator = '*';
             }
