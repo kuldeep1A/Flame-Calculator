@@ -238,6 +238,24 @@ public class CalculatorUI {
         });
 
         btnSub = createButton("-", columns[3], rows[3]);
+        btnSub.addActionListener(event -> {
+            if (!Pattern.matches(DOUBLE_OR_NUMBER_REGEX, inputScreen.getText()))
+                return;
+
+            if (go){
+                typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
+                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))){
+                    inputScreen.setText(String.valueOf((int) typedValue));
+                } else {
+                    inputScreen.setText(String.valueOf(typedValue));
+                }
+                selectedOperator = '-';
+                go = false;
+                addToDisplay = false;
+            } else {
+                selectedOperator = '-';
+            }
+        });
 
         btn1 = createButton("1", columns[0], rows[4]);
         btn1.addActionListener(event -> {
@@ -338,7 +356,7 @@ public class CalculatorUI {
                 return;
             if (go) {
                 typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", inputScreen.getText())){
+                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))){
                     inputScreen.setText(String.valueOf((int) typedValue));
                 } else {
                     inputScreen.setText(String.valueOf(typedValue));
