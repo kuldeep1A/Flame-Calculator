@@ -145,6 +145,22 @@ public class CalculatorUI {
 
         btnMod = createButton("%", columns[2], rows[1]);
         btnDiv = createButton("/", columns[3], rows[1]);
+        btnDiv.addActionListener(event -> {
+            if (!Pattern.matches(DOUBLE_OR_NUMBER_REGEX, inputScreen.getText()))
+                return;
+
+            if (go) {
+                typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
+                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))){
+                    inputScreen.setText(String.valueOf((int) typedValue));
+                } else {
+                    inputScreen.setText(String.valueOf(typedValue));
+                }
+                selectedOperator = '/';
+                go = false;
+                addToDisplay = false;
+            }
+        });
 
 
         btn7 = createButton("7", columns[0], rows[2]);
