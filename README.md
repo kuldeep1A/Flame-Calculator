@@ -3,9 +3,8 @@ This is a application of calculator
 
 -----------------------------------------------------
 ## ScreenShort of Application
-|                Scientific / Dark                | Standard / Colored |
-:------------------------------------------------:|:-------------------|
-![DarkCalculator](image/Scientific-dark.png) | ![ColoredCalculator](image/Standard-light.png)
+![d](image/Scientific-dark.png) 
+![c](image/Standard-light.png)
 
 
 :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)
