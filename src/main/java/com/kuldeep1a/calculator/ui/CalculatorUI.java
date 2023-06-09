@@ -7,6 +7,7 @@ import com.kuldeep1a.calculator.theme.properties.Theme;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.regex.Pattern;
 import java.awt.Color;
@@ -69,20 +70,12 @@ public class CalculatorUI {
         initButtons(columns, rows);
         initCalculatorTypeSelector();
 
+        initThemeSelector();
+
         window.setLayout(null);
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
-    }
-
-
-    public void initInputScreen(int[] columns, int[] rows){
-        inputScreen = new JTextField("0");
-        inputScreen.setBounds(columns[0], rows[0], 350, 70);
-        inputScreen.setEditable(false);
-        inputScreen.setBackground(Color.WHITE);
-        inputScreen.setFont(new Font(FONT_NAME, Font.PLAIN, 33));
-        window.add(inputScreen);
     }
 
     public double calculate(double firstNumber, double secondNumber, char operator){
@@ -104,7 +97,30 @@ public class CalculatorUI {
         }
     }
 
-    public void initCalculatorTypeSelector(){
+    private void initThemeSelector(){
+        comboTheme = createComboBox(themeMap.keySet().toArray(new String[0]), 230, 30, "Theme");
+        comboTheme.addItemListener(event -> {
+            if (event.getStateChange() != ItemEvent.SELECTED)
+                return;
+            String selectedItem = (String) event.getItem();
+            applyTheme(themeMap.get(selectedItem));
+        });
+
+        if (themeMap.entrySet().iterator().hasNext()){
+            applyTheme(themeMap.entrySet().iterator().next().getValue());
+        }
+
+    }
+    private void initInputScreen(int[] columns, int[] rows){
+        inputScreen = new JTextField("0");
+        inputScreen.setBounds(columns[0], rows[0], 350, 70);
+        inputScreen.setEditable(false);
+        inputScreen.setBackground(Color.WHITE);
+        inputScreen.setFont(new Font(FONT_NAME, Font.PLAIN, 33));
+        window.add(inputScreen);
+    }
+
+    private void initCalculatorTypeSelector(){
         comboCalculatorType = createComboBox(new String[]{"Standard", "Scientific"}, 20, 30, "Calculator type");
         comboCalculatorType.addItemListener(event ->{
             if (event.getStateChange() != ItemEvent.SELECTED){
@@ -127,7 +143,6 @@ public class CalculatorUI {
             }
         });
     }
-
 
     // Double.parseDouble() It returns e double value represented by the string argument.
     private void initButtons(int[] columns, int[] rows) {
